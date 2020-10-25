@@ -38,25 +38,6 @@ class TradeService extends Service {
   async findAll(serverId) {
     const server = await this.ctx.model.Server.findByPk(serverId)
     if (server === null) this.ctx.throw(422, "target server not find")
-    // const continents = await server
-    //   .getContinents({
-    //     attributes: ["id", "name"],
-    //     include: [
-    //       {
-    //         model: this.ctx.model.Area,
-    //         as: "areas",
-    //         attributes: ["id", 'name', 'warArea'],
-    //       },
-    //     ],
-    //   })
-    //   .then((continents) => {
-    //     JSON.parse(JSON.stringify(continents)).forEach((continent) => {
-    //       continent.areas = continent.areas.map((area) => area.id)
-    //       res.continents[continent.id] = continent
-    //     })
-
-    //   })
-    // return res
 
     const resRaw = await server.getContinents({
       attributes: ["id", "name"],
